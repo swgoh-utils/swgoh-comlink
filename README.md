@@ -2,7 +2,9 @@
 
 This service is capable of making read-only calls to SWGOH game APIs that do not require authentication.  You host your own copy of the service.  It is provided as an executable primarily via a docker image, but some binaries for common architectures are provided on a best effort basis with each release [on github](https://github.com/sw-goh-tools/swgoh-comlink/releases)
 
-When run a small web server is exposed that includes a list of the API end points, their parameters, and response formats.  The data returned is not modified, with the exception of the localization bundle, which is provided either in base64 encoded string format, or unzipped into a json object.
+When run, a small web server is exposed on the port you specify.  You can obtain the open API spec from the web server, as well as view it in the swagger UI interface.  The spec desribes the list of the API end points, their parameters, and response formats.
+
+The data returned from the APIs is not modified, with the exception of the localization bundle, which is provided either in base64 encoded string format, or unzipped into a json object.  The philosophy for this project is to provide as much as possible as-is in order to enable things such as data mining and minimize manual work in future game updates.
 
 Updates with access to new data from the game APIs will be provided on a best effort basis, but aren't guaranteed.
 
