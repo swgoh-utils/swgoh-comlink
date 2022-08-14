@@ -1,0 +1,240 @@
+{
+	"info": {
+		"_postman_id": "19338e50-e24d-4a45-819b-60e61454e3cd",
+		"name": "swgoh-comlink",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/metadata",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"localizationVersion\", jsonData.latestLocalizationBundleVersion);\r",
+							"pm.environment.set(\"gameDataVersion\", jsonData.latestGamedataVersion);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/metadata",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"metadata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/enums",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/enums",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"enums"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payload\": {\r\n        \"version\": \"{{gameDataVersion}}\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/data",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/player",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payload\": {\r\n        \"allyCode\": \"452215113\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/player",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"player"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/playerArena",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payload\": {\r\n        \"allyCode\": \"452215113\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/playerArena",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"playerArena"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/localization",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payload\": {\r\n        \"id\": \"{{localizationVersion}}\"\r\n    },\r\n    \"unzip\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/localization",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"localization"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"function getPath(url) {",
+					"  var pathRegex = /.+?\\:\\/\\/.+?(\\/.+?)(?:#|\\?|$)/;",
+					"  var result = url.match(pathRegex);",
+					"  return result && result.length > 1 ? result[1] : '';",
+					"}",
+					"function signPostRequest() {",
+					"  const accessKey = pm.variables.get(\"accessKey\");",
+					"  const secretKey = pm.variables.get(\"secretKey\");",
+					"",
+					"  if (accessKey && secretKey) {",
+					"    const reqTime = `${(new Date()).getTime()}`;",
+					"",
+					"    // resolve the variables in the raw request body",
+					"    const Property = require('postman-collection').Property;",
+					"    const resolvedBody = Property.replaceSubstitutions(pm.request.body.raw || \"{}\", pm.variables.toObject())",
+					"",
+					"    const hmac = CryptoJS.algo.HMAC.create(CryptoJS.algo.SHA256, secretKey)",
+					"    hmac.update(reqTime); // request time",
+					"    hmac.update(request['method']); // verb e.g POST",
+					"    hmac.update(getPath(request['url'])); // url e.g /authGuest",
+					"",
+					"    const hash = CryptoJS.MD5(JSON.stringify(JSON.parse(resolvedBody)));",
+					"    hmac.update(hash.toString(CryptoJS.enc.Hex))",
+					"    const hmacDigest = hmac.finalize().toString(CryptoJS.enc.Hex);",
+					"",
+					"    pm.request.headers.add({key: 'X-Date', value: reqTime});",
+					"    pm.request.headers.add({",
+					"      key: 'Authorization',",
+					"      value: `HMAC-SHA256 Credential=${accessKey},Signature=${hmacDigest}`",
+					"    });",
+					"  }",
+					"}",
+					"signPostRequest();"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
