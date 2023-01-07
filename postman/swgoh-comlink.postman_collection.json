@@ -1,10 +1,66 @@
 {
 	"info": {
-		"_postman_id": "19338e50-e24d-4a45-819b-60e61454e3cd",
+		"_postman_id": "bca87e97-02f7-4528-96d9-0e02c61ae407",
 		"name": "swgoh-comlink",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "/guild",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payload\": {\r\n        \"guildId\": \"K3un5H1FT7K1EzyrbLVOmQ\",\r\n        \"includeRecentGuildActivityInfo\": true\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/guild",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"guild"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/getGuilds",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payload\": {\r\n        \"name\": \"Reluctant Cooperation\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/getGuilds",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"getGuilds"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "/metadata",
 			"event": [

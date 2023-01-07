@@ -1,10 +1,12 @@
 # SWGoH Comlink
 
-SWGoH Comlink is a service provided as a binary executable that makes calls to the read-only, unauthenticated game APIs for the mobile game Star Wars: Galaxy of Heroes. When the service is run, a web server is exposed on the port specified by the user. Users are responsible for hosting their own copy of the comlink service to provide for the game data needs of the tools/services they develop and/or provide.
+SWGoH Comlink is a service provided as a binary executable that makes calls to read-only, (mostly) unauthenticated game APIs for the mobile game Star Wars: Galaxy of Heroes.  APIs that cannot be called without authentication, such as the guild and guild search APIs, use a combination of the app name you select, the public IP of where comlink is running, and the port it's running on in order to generate anonymous guest accounts to use with the game that can be re-used across service restarts. When the service is run, a web server is exposed on the port specified by the user. Users are responsible for hosting their own copy of the comlink service to provide for the game data needs of the tools/services they develop and/or provide.
 
 Capital Games ultimately controls what data is accessible in the APIs Comlink connects to. Those APIs currently only include the following information:
 - game data including metadata, localization bundles, and enum values referenced throughout the data
 - player profile data
+- guild profile data
+- guild search
 
 The list of endpoints provided by the service, their parameters, and the response formats are bundled directly with the service in an OpenAPI specification that can be viewed and downloaded with the included Redoc UI interface on the web server.  The github wiki has additional details about the entity relationships of the response data for the [game data](https://github.com/swgoh-utils/swgoh-comlink/wiki/Game-Data) and [player data](https://github.com/swgoh-utils/swgoh-comlink/wiki/Player-Data).
 
