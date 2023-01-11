@@ -40,7 +40,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"payload\": {\r\n        \"name\": \"Reluctant Cooperation\"\r\n    }\r\n}",
+					"raw": "{\r\n    \"payload\": {\r\n        \"name\": \"Reluctant Cooperation\",\r\n        \"filterType\": 4\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
