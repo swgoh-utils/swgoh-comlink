@@ -39,5 +39,31 @@ services:
     networks:
       - comlink
 
+  # please just migrate to using comlink and don't use fake.help
+  # but here's an example in case you need it
+  # fake.help:
+  #   container_name: fake.help
+  #   image: ghcr.io/swgoh-utils/fake.help:latest
+  #   restart: always
+  #   depends_on:
+  #     - swgoh-comlink
+  #   environment:
+  #     # combine multiple sets of values as defaults using yaml anchors
+  #     <<: [*env_key_vars, *env_client_url]
+  #     PORT: 3333
+  #   volumes:
+  #     - "./data:/app/data"
+  #   ports:
+  #     - 3333:3333
+  #   networks:
+  #     - comlink
+
+  swgoh-ae:
+    container_name: swgoh-ae
+    image: ghcr.io/swgoh-utils/swgoh-ae2:latest
+    restart: always
+    ports:
+      - 3123:80
+
 networks:
   comlink: {}
