@@ -61,6 +61,34 @@
 			},
 			"response": []
 		},
+    {
+			"name": "/getEvents",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/getEvents",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"getEvents"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "/metadata",
 			"event": [
