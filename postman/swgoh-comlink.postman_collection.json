@@ -89,6 +89,34 @@
 			},
 			"response": []
 		},
+    {
+      "name": "/getLeaderboard",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payload\": {\r\n        \"leaderboardType\": 6,\r\n        \"league\": 100,\r\n        \"division\": 25\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/getLeaderboard",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"getLeaderboard"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "/metadata",
 			"event": [
