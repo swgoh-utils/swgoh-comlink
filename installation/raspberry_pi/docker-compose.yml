@@ -1,0 +1,49 @@
+networks:
+  comlink:
+    external: true
+
+services:
+  swgoh-comlink:
+    container_name: swgoh-comlink
+    image: ghcr.io/swgoh-utils/swgoh-comlink:latest
+    restart: always
+    environment:
+      APP_NAME: your_app_name
+    ports:
+      - 3200:3000
+    networks:
+      - comlink
+
+  health-check:
+    image: curlimages/curl
+    container_name: health_check
+    restart: unless-stopped
+    command: ["/bin/sh","-c", "sleep infinity"]
+    depends_on:
+      - swgoh-comlink
+    healthcheck:
+      test: curl -f http://swgoh-comlink:3000/readyz || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - comlink
+
+  swgoh-stats:
+    container_name: swgoh-stats
+    image: ghcr.io/swgoh-utils/swgoh-stats:latest
+    restart: always
+    depends_on:
+      swgoh-comlink:
+        condition: service_started
+      health-check:
+        condition: service_healthy
+    environment:
+      CLIENT_URL: http://swgoh-comlink:3000
+      PORT: 3223
+    volumes:
+      - "/opt/docker/statCalcData:/app/statCalcData"
+    ports:
+      - 3223:3223
+    networks:
+      - comlink
