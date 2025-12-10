@@ -17,6 +17,3 @@ sudo systemctl enable containerd.service
 
 # Create new folder for persistent stat-calc data
 sudo mkdir -p /opt/docker/statCalcData
-
-# Create new docker network for containers to share
-docker network create comlink

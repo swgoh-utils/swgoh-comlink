@@ -5,14 +5,14 @@
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
-		{
-			"name": "/guild",
+    {
+			"name": "/data",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"payload\": {\r\n        \"guildId\": \"K3un5H1FT7K1EzyrbLVOmQ\",\r\n        \"includeRecentGuildActivityInfo\": true\r\n    }\r\n}",
+					"raw": "{\r\n    \"payload\": {\r\n        \"version\": \"{{gameDataVersion}}\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -20,42 +20,40 @@
 					}
 				},
 				"url": {
-					"raw": "{{protocol}}://{{host}}:{{port}}/guild",
+					"raw": "{{protocol}}://{{host}}:{{port}}/data",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{host}}"
 					],
 					"port": "{{port}}",
 					"path": [
-						"guild"
+						"data"
 					]
 				}
 			},
 			"response": []
 		},
-		{
-			"name": "/getGuilds",
+    {
+			"name": "/enums",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"payload\": {\r\n        \"name\": \"Reluctant Cooperation\",\r\n        \"filterType\": 4\r\n    }\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": ""
 				},
 				"url": {
-					"raw": "{{protocol}}://{{host}}:{{port}}/getGuilds",
+					"raw": "{{protocol}}://{{host}}:{{port}}/enums",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{host}}"
 					],
 					"port": "{{port}}",
 					"path": [
-						"getGuilds"
+						"enums"
 					]
 				}
 			},
@@ -90,6 +88,62 @@
 			"response": []
 		},
     {
+      "name": "/getGuildLeaderboard",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"payload\": {\r\n    \"leaderboardId\": [{\r\n        \"leaderboardType\": 6,\r\n        \"defId\": \"GUILD:RAIDS:NORMAL_DIFF:ROTJ:SPEEDERBIKE\",\r\n        \"monthOffset\": 1\r\n    }],\r\n    \"count\": 200\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/getGuildLeaderboard",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"getGuildLeaderboard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/getGuilds",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payload\": {\r\n        \"name\": \"Reluctant Cooperation\",\r\n        \"filterType\": 4\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/getGuilds",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"getGuilds"
+					]
+				}
+			},
+			"response": []
+		},
+    {
       "name": "/getLeaderboard",
 			"request": {
 				"method": "POST",
@@ -112,6 +166,118 @@
 					"port": "{{port}}",
 					"path": [
 						"getLeaderboard"
+					]
+				}
+			},
+			"response": []
+		},
+    {
+			"name": "/getNameSpaces",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/getNameSpaces",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"getNameSpaces"
+					]
+				}
+			},
+			"response": []
+		},
+    {
+			"name": "/getSegmentedContent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payload\": {\r\n        \"contentNameSpace\": \"current\",\r\n        \"acceptLanguage\": \"ENG_US\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/getSegmentedContent",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"getSegmentedContent"
+					]
+				}
+			},
+			"response": []
+		},
+    {
+			"name": "/guild",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payload\": {\r\n        \"guildId\": \"K3un5H1FT7K1EzyrbLVOmQ\",\r\n        \"includeRecentGuildActivityInfo\": true\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/guild",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"guild"
+					]
+				}
+			},
+			"response": []
+		},
+    {
+			"name": "/localization",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"payload\": {\r\n        \"id\": \"{{localizationVersion}}\"\r\n    },\r\n    \"unzip\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/localization",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"localization"
 					]
 				}
 			},
@@ -153,60 +319,6 @@
 					"port": "{{port}}",
 					"path": [
 						"metadata"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/enums",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{protocol}}://{{host}}:{{port}}/enums",
-					"protocol": "{{protocol}}",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"enums"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/data",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"payload\": {\r\n        \"version\": \"{{gameDataVersion}}\"\r\n    }\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{protocol}}://{{host}}:{{port}}/data",
-					"protocol": "{{protocol}}",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"data"
 					]
 				}
 			},
@@ -267,34 +379,6 @@
 				}
 			},
 			"response": []
-		},
-		{
-			"name": "/localization",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"payload\": {\r\n        \"id\": \"{{localizationVersion}}\"\r\n    },\r\n    \"unzip\": false\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{protocol}}://{{host}}:{{port}}/localization",
-					"protocol": "{{protocol}}",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"localization"
-					]
-				}
-			},
-			"response": []
 		}
 	],
 	"event": [
@@ -317,7 +401,7 @@
 					"",
 					"    // resolve the variables in the raw request body",
 					"    const Property = require('postman-collection').Property;",
-					"    const resolvedBody = Property.replaceSubstitutions(pm.request.body.raw || \"{}\", pm.variables.toObject())",
+					"    const resolvedBody = pm.request.body.raw ? JSON.stringify(JSON.parse(Property.replaceSubstitutions(pm.request.body.raw, pm.variables.toObject()))) : \"\";",
 					"",
 					"    const hmac = CryptoJS.algo.HMAC.create(CryptoJS.algo.SHA256, secretKey)",
 					"    hmac.update(reqTime); // request time",

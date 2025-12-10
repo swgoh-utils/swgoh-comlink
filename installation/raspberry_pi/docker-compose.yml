@@ -1,6 +1,5 @@
 networks:
-  comlink:
-    external: true
+  comlink: {}
 
 services:
   swgoh-comlink:
@@ -13,21 +12,10 @@ services:
       - 3200:3000
     networks:
       - comlink
-
-  health-check:
-    image: curlimages/curl
-    container_name: health_check
-    restart: unless-stopped
-    command: ["/bin/sh","-c", "sleep infinity"]
-    depends_on:
-      - swgoh-comlink
     healthcheck:
-      test: curl -f http://swgoh-comlink:3000/readyz || exit 1
-      interval: 30s
-      timeout: 10s
-      retries: 5
-    networks:
-      - comlink
+      test: ["CMD", "/swgoh-comlink", "--check"]
+      start_period: 10s
+      start_interval: 0.5s
 
   swgoh-stats:
     container_name: swgoh-stats
@@ -35,8 +23,6 @@ services:
     restart: always
     depends_on:
       swgoh-comlink:
-        condition: service_started
-      health-check:
         condition: service_healthy
     environment:
       CLIENT_URL: http://swgoh-comlink:3000

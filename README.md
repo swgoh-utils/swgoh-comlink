@@ -9,8 +9,9 @@ Capital Games ultimately controls what data is accessible in the APIs Comlink co
 - guild search
 - game events
 - GAC leaderboards and brackets
+- guild leaderboards
 
-The list of endpoints provided by the service, their parameters, and the response formats are bundled directly with the service in an OpenAPI specification that can be viewed and downloaded with the included Redoc UI interface on the web server.  The github wiki has additional details about the entity relationships of the response data for the [game data](https://github.com/swgoh-utils/swgoh-comlink/wiki/Game-Data), [player data](https://github.com/swgoh-utils/swgoh-comlink/wiki/Player-Data), and [guild data](https://github.com/swgoh-utils/swgoh-comlink/wiki/Guild-Data).
+The list of endpoints provided by the service, their parameters, and the response formats are bundled directly with the service in an OpenAPI specification that can be viewed and downloaded with the included Redoc UI interface on the web server, and can also be found in the assets associated with [releases](https://github.com/swgoh-utils/swgoh-comlink/releases).  The github wiki has additional details about the entity relationships of the response data for the [game data](https://github.com/swgoh-utils/swgoh-comlink/wiki/Game-Data), [player data](https://github.com/swgoh-utils/swgoh-comlink/wiki/Player-Data), and [guild data](https://github.com/swgoh-utils/swgoh-comlink/wiki/Guild-Data).
 
 Vist the [Getting Started](https://github.com/swgoh-utils/swgoh-comlink/wiki/Getting-Started) page for additional information and instructions on setup.
 

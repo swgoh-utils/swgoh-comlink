@@ -28,7 +28,7 @@ services:
     image: ghcr.io/swgoh-utils/swgoh-stats:latest
     restart: always
     depends_on:
-       swgoh-comlink:
+      swgoh-comlink:
         condition: service_healthy
     environment:
       # combine multiple sets of values as defaults using yaml anchors
